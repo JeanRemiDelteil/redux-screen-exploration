@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path');
 
 /**
  * Edited from https://github.com/rollup/rollup-plugin-virtual
@@ -26,6 +26,7 @@ function virtual(modules) {
 			
 			if (importer) {
 				if (importer.startsWith(PREFIX)) importer = importer.slice(PREFIX.length);
+				
 				const resolved = path.resolve(path.dirname(importer), id);
 				if (resolvedIds.has(resolved)) return PREFIX + resolved;
 			}
@@ -41,4 +42,4 @@ function virtual(modules) {
 	};
 }
 
-export default virtual;
+module.exports.virtualModule = virtual;

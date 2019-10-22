@@ -2,11 +2,9 @@
 	"name": "redux-screen-exploration",
 	"version": "0.0.1",
 	"scripts": {
-		"watch": "rollup -c build/rollup.config.js --environment target:dev,serve,noLegacyBuild --watch",
-		"build:dev": "rollup -c build/rollup.config.js --environment target:dev",
-		"serve:dev": "cd ./build/src/dev && superstatic --port 5000 --host localhost",
-		"build:prod": "rollup -c build/rollup.config.js --environment target:prod",
-		"deploy:prod": "cd ./build/src/prod && firebase deploy"
+		"watch_dev": "gulp watch --cwd=./build",
+		"build_dev": "gulp build --cwd=./build",
+		"serve_dev": "gulp serve --cwd=./build"
 	},
 	"dependencies": {
 		"@polymer/paper-button": "^3.0.1",
@@ -19,14 +17,26 @@
 		"redux": "^4.0.1"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/plugin-proposal-decorators": "^7.6.0",
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/plugin-syntax-import-meta": "^7.2.0",
+		"@babel/preset-env": "^7.6.3",
+		"@babel/preset-typescript": "^7.6.0",
 		"@open-wc/building-rollup": "^0.9.33",
+		"@open-wc/building-utils": "^2.10.0",
+		"babel-plugin-bundled-import-meta": "^0.3.1",
+		"babel-plugin-template-html-minifier": "^3.1.0",
+		"gulp": "^4.0.2",
+		"gulp-clean": "^0.4.0",
 		"rimraf": "^2.6.3",
-		"rollup": "^1.21.4",
-		"rollup-plugin-commonjs": "^10.0.0",
-		"rollup-plugin-copy": "^3.0.0",
+		"rollup": "^1.25.1",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-index-html": "^1.5.6",
 		"rollup-plugin-json": "^4.0.0",
-		"rollup-plugin-terser": "^5.0.0",
-		"rollup-plugin-visualizer": "^2.5.0",
-		"superstatic": "^6.0.4"
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-terser": "^5.1.2",
+		"superstatic": "^6.0.4",
+		"yargs": "^14.2.0"
 	}
 }

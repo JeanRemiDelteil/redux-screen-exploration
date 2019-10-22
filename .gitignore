@@ -2,5 +2,5 @@
 *.log
 
 node_modules/
-/build/src/
+/build/output/
 /stats.html

@@ -3,7 +3,7 @@
  * @param {{}} patch
  */
 async function patchJSON(path, patch) {
-	const originalData = await import(`../${path}`);
+	const originalData = require(`../../${path}`);
 	
 	return {
 		...originalData,
@@ -12,14 +12,17 @@ async function patchJSON(path, patch) {
 }
 
 /**
+ * @param {string} inputDir
  * @param {Object<string, {}>} patches
  */
-export async function patchJSONs(patches) {
-	const res = {};
-	
-	for (const path of Object.keys(patches)) {
-		res[path] = JSON.stringify(await patchJSON(path, patches[path]));
-	}
-	
-	return res;
-}
+module.exports = {
+	patchJSONs: async function (inputDir, patches) {
+		const res = {};
+		
+		for (const path of Object.keys(patches)) {
+			res['../' + inputDir + path] = JSON.stringify(await patchJSON(inputDir + path, patches[path]));
+		}
+		
+		return res;
+	},
+};

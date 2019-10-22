@@ -1,5 +1,8 @@
 declare interface BuildConfig {
-	outputFolder: string;
+	inputFile: string;
+	inputDir: string;
+	outputDir: string;
+	env: 'production' | 'development';
 	
 	sourceMap: boolean;
 	
