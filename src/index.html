@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+	
+	<title>Redux screen exploration</title>
+	
+	<base href="/">
+	
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap" rel="stylesheet">
+	
+	<style>
+		:root {
+			font-family: 'Open Sans', sans-serif;
+		}
+	</style>
+	
+	<script>
+		function loadScript(src) {
+			// noinspection ES6ConvertVarToLetConst
+			var domScript = document.createElement('script');
+			
+			domScript.src = src;
+			document.head.appendChild(domScript);
+		}
+		
+		// Polyfill needed for neon-animation (mainly dropdown menu)
+		!(window['KeyframeEffect'] && document['timeline']) && loadScript('https://unpkg.com/web-animations-js@2.3.2/web-animations-next-lite.min.js');
+	</script>
+	
+	<script type="module" src="/main/_entry_config.js"></script>
+	<script type="module" src="/main/_entry_main.js"></script>
+
+</head>
+<body>
+	
+	<app-main></app-main>
+	
+	<noscript>
+		This website needs javascript to express its functionality.
+	</noscript>
+
+</body>
+</html>
