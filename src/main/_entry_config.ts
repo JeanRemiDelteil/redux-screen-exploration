@@ -1,7 +1,7 @@
 import {env} from './config.json';
 
 
-window['process'] = {
+(window as any).process = {
 	'env': {
 		'NODE_ENV': env,
 	},

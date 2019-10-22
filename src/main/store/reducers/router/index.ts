@@ -7,15 +7,12 @@ const INITIAL_STATE = {
 };
 
 
-export const router = (state = INITIAL_STATE, action) => {
+export const router = (state = INITIAL_STATE, action: { type: string, payload: any }) => {
 	
 	// noinspection JSRedundantSwitchStatement
 	switch (action.type) {
 		case NAVIGATE_TO:
-			/**
-			 * @type {Location}
-			 */
-			const location = action.payload;
+			const location: Location = action.payload;
 			
 			return {
 				path: location.pathname,

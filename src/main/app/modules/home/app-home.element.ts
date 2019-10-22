@@ -1,11 +1,8 @@
-import {html, LitElement} from 'lit-element';
+import {customElement, html, LitElement} from 'lit-element';
 
 
+@customElement('app-home')
 export class AppHome extends LitElement {
-	
-	static get is() {
-		return 'app-home';
-	}
 	
 	render() {
 		return html`

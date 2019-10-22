@@ -1,11 +1,8 @@
-import {html, LitElement} from 'lit-element';
+import {customElement, html, LitElement} from 'lit-element';
 
 
+@customElement('app-404')
 export class App404 extends LitElement {
-	
-	static get is() {
-		return 'app-404';
-	}
 	
 	render() {
 		return html`

@@ -1,9 +1,11 @@
-import {html, LitElement} from 'lit-element';
+import {customElement, html, LitElement, property, TemplateResult} from 'lit-element';
 import {installRouter} from 'pwa-helpers/router';
-import {connect} from '../store/store';
+import {connect} from 'pwa-helpers/connect-mixin';
 import {navigateTo} from '../store/reducers/router/actions';
 import {getLocationPath} from '../store/reducers/router/selectors';
 import {Router} from '../lib/router/Router';
+import {store} from '../store/store';
+import {IState} from '../store/reducers/state.interface';
 
 
 const router = new Router([
@@ -31,19 +33,15 @@ const router = new Router([
 ]);
 
 
-export class AppMain extends connect(LitElement) {
+@customElement('app-main')
+export class AppMain extends connect(store)(LitElement) {
 	
-	static get is() {
-		return 'app-main';
-	}
+	@property({
+		type: Object,
+	})
+	public route: TemplateResult | string;
 	
-	static get properties() {
-		return {
-			route: {
-				type: Object,
-			},
-		};
-	}
+	private _router: Router;
 	
 	
 	constructor() {
@@ -52,7 +50,7 @@ export class AppMain extends connect(LitElement) {
 		// Init routes
 		this._router = router;
 		
-		installRouter((location) => this.store.dispatch(navigateTo(location)));
+		installRouter((location) => store.dispatch(navigateTo(location)));
 	}
 	
 	
@@ -90,7 +88,7 @@ export class AppMain extends connect(LitElement) {
 `;
 	}
 	
-	stateChanged(state) {
+	stateChanged(state: IState) {
 		this.route = this._router.process(getLocationPath(state));
 	}
 	

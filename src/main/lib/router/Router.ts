@@ -1,13 +1,14 @@
+import {Route} from './route.interface';
+import {TemplateResult} from 'lit-html';
+
 export class Router {
 	
-	/**
-	 * @param {Router.Route[]} routes
-	 */
-	constructor(routes) {
-		/**
-		 * @type {Router.Route[]}
-		 * @private
-		 */
+	private readonly _routes: Route[];
+	private _path: string;
+	private _currentRouteOutput: string | TemplateResult;
+	
+	
+	constructor(routes: Route[]) {
 		this._routes = routes || [];
 		
 		this._path = '';
@@ -17,21 +18,11 @@ export class Router {
 	
 	//<editor-fold desc="# Private methods">
 	
-	/**
-	 * @param {Router.Route} route
-	 * @param {string} path
-	 *
-	 * @private
-	 */
-	static _loadRoute(route, path) {
+	private static _loadRoute(route: Route, path: string) {
 		return route.pattern.test(path);
 	}
 	
-	/**
-	 * @param module
-	 * @private
-	 */
-	static _autoDefineLitElementClass(module) {
+	private static _autoDefineLitElementClass(module: any) {
 		Object.keys(module)
 			.forEach(key => {
 				const elemClass = module[key];
@@ -44,10 +35,7 @@ export class Router {
 	//</editor-fold>
 	
 	
-	/**
-	 * @param {string} path
-	 */
-	process(path) {
+	public process(path: string) {
 		if (path === this._path) return this._currentRouteOutput;
 		this._path = path;
 		
